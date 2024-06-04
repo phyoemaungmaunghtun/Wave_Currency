@@ -22,6 +22,6 @@ object DataSourceModule {
 
     @Provides
     fun provideSharedPrefsDataSource(@ApplicationContext context: Context,sharedPreferences: SharedPreferences): SharedPrefsDataSource {
-        return SharedPrefsDataSource(context,sharedPreferences)
+        return SharedPrefsDataSource(sharedPreferences)
     }
 }
