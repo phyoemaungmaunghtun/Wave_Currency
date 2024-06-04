@@ -1,5 +1,6 @@
 package com.wave.wavecurrency
 
+import MainScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.wave.wavecurrency.ui.MainScreen
 import com.wave.wavecurrency.ui.theme.WaveCurrencyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +31,7 @@ fun MainNavigator() {
 
     NavHost(navController, startDestination = "main") {
         composable("main") {
-            MainScreen(navController = navController)
+            MainScreen()
         }
     }
 }
