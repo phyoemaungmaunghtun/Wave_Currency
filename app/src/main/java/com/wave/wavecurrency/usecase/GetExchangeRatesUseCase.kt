@@ -10,11 +10,9 @@ class GetExchangeRatesUseCase @Inject constructor(
     private val repository: ExchangeRatesRepository
 ) {
     suspend operator fun invoke(
-        currencies: String,
         source: String,
-        format: Int
     ): DataOrException<ExchangeRatesResponse?, Boolean, Exception> {
-        return repository.getExchangeRates(currencies, source, format)
+        return repository.getExchangeRates(source)
     }
 
     suspend operator fun invoke(

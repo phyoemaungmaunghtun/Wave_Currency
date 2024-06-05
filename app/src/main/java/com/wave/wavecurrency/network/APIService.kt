@@ -11,9 +11,7 @@ import javax.inject.Singleton
 interface APIService {
     @GET("api/live")
     suspend fun getExchangeRates(
-        @Query("currencies") currencies: String,
         @Query("source") source: String,
-        @Query("format") format: Int
     ): Response<ExchangeRatesResponse>
 
     @GET("list")

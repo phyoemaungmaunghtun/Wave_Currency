@@ -24,7 +24,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAccessKeyInterceptor(): AccessKeyInterceptor {
-        val accessKey = "122884b1c66f563be6d9a7a7432f0657"
+        val accessKey = "ffa85d5766ced52efd76f836a51e4511"
         return AccessKeyInterceptor(accessKey)
     }
 

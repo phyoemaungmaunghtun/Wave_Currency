@@ -8,6 +8,8 @@ class SharedPrefsDataSource(private val sharedPreferences: SharedPreferences) {
     companion object {
         const val CURRENCY_PREFS = "CURRENCY"
         const val CURRENCY_LIST = "currency_list"
+        const val CURRENCY_RATE = "currency_rate"
+        const val LAST_REFRESH_TIME = "last_refresh"
     }
 
     fun saveCurrencyList(currencyList: Map<String, String>) {
@@ -16,7 +18,7 @@ class SharedPrefsDataSource(private val sharedPreferences: SharedPreferences) {
     }
 
     fun getCurrencyList(): Map<String, String> {
-        val json = sharedPreferences.getString(CURRENCY_LIST, null)  // Get the JSON string
+        val json = sharedPreferences.getString(CURRENCY_LIST, null)
         return if (json != null) {
             val type = object :
                 TypeToken<Map<String, String>>() {}.type  // Define the correct type for deserialization
@@ -26,5 +28,30 @@ class SharedPrefsDataSource(private val sharedPreferences: SharedPreferences) {
         } else {
             mutableMapOf()
         }
+    }
+
+    fun saveCurrencyRate(currencyList: Map<String, Double>) {
+        val json = Gson().toJson(currencyList)  // Serialize the map to JSON
+        sharedPreferences.edit().putString(CURRENCY_RATE, json).apply()
+        saveLastRefreshTime(System.currentTimeMillis())
+    }
+
+    fun getCurrencyRate(): Map<String, Double> {
+        val json = sharedPreferences.getString(CURRENCY_RATE, null)  // Get the JSON string
+        return if (json != null) {
+            val type = object :
+                TypeToken<Map<String, Double>>() {}.type  // Define the correct type for deserialization
+            Gson().fromJson(json, type)  // Deserialize JSON into a map of string to double
+        } else {
+            mutableMapOf()
+        }
+    }
+
+    private fun saveLastRefreshTime(time: Long) {
+        sharedPreferences.edit().putLong(LAST_REFRESH_TIME, time).apply()
+    }
+
+    fun getLastRefreshTime(): Long {
+        return sharedPreferences.getLong(LAST_REFRESH_TIME, 0L)
     }
 }

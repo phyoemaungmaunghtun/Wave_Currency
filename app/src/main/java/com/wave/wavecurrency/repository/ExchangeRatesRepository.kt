@@ -6,9 +6,7 @@ import com.wave.wavecurrency.model.ExchangeRatesResponse
 
 interface ExchangeRatesRepository {
     suspend fun getExchangeRates(
-        currencies: String,
-        source: String,
-        format: Int
+        source: String
     ): DataOrException<ExchangeRatesResponse?, Boolean, Exception>
 
     suspend fun getCurrencyList():DataOrException<CurrencyListResponse?, Boolean, Exception>

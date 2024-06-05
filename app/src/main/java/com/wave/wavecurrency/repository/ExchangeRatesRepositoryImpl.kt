@@ -14,13 +14,11 @@ class ExchangeRatesRepositoryImpl @Inject constructor(
 
     private val getExchangeRate = DataOrException<ExchangeRatesResponse?, Boolean, Exception>()
     override suspend fun getExchangeRates(
-        currencies: String,
         source: String,
-        format: Int
     ): DataOrException<ExchangeRatesResponse?, Boolean, Exception> {
         try {
             getExchangeRate.loading = true
-            val resp = apiService.getExchangeRates(currencies, source, format)
+            val resp = apiService.getExchangeRates(source)
             getExchangeRate.data = resp.body()
             if (resp.code() == 200 && getExchangeRate.data?.success == true) {
                 getExchangeRate.loading = false
@@ -58,7 +56,7 @@ class ExchangeRatesRepositoryImpl @Inject constructor(
             403 -> "Oops! It seems you don't have the necessary permissions to access this feature. Please contact your system administrator for assistance."
             500 -> "Server Response: $responseCode  server broken"
             504 -> "Server Response: $responseCode  gateway time-out"
-            else -> "Server Response: $responseCode  unknown error"
+            else -> "It is server error and you should try again!"
         }
     }
 }
