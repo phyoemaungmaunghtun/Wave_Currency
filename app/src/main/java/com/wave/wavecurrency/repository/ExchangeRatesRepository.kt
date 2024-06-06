@@ -9,5 +9,5 @@ interface ExchangeRatesRepository {
         source: String
     ): DataOrException<ExchangeRatesResponse?, Boolean, Exception>
 
-    suspend fun getCurrencyList():DataOrException<CurrencyListResponse?, Boolean, Exception>
+    suspend fun getCurrencyList(): DataOrException<CurrencyListResponse?, Boolean, Exception>
 }

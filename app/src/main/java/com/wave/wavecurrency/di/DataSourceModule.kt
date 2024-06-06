@@ -17,11 +17,16 @@ object DataSourceModule {
     @Provides
     @Singleton
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
-        return context.getSharedPreferences(SharedPrefsDataSource.CURRENCY_PREFS, Context.MODE_PRIVATE)
+        return context.getSharedPreferences(
+            SharedPrefsDataSource.CURRENCY_PREFS,
+            Context.MODE_PRIVATE
+        )
     }
 
     @Provides
-    fun provideSharedPrefsDataSource(@ApplicationContext context: Context,sharedPreferences: SharedPreferences): SharedPrefsDataSource {
+    fun provideSharedPrefsDataSource(
+        sharedPreferences: SharedPreferences
+    ): SharedPrefsDataSource {
         return SharedPrefsDataSource(sharedPreferences)
     }
 }

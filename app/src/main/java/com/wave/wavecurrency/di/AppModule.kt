@@ -1,6 +1,5 @@
 package com.wave.wavecurrency.di
 
-import android.content.Context
 import com.wave.wavecurrency.network.APIService
 import com.wave.wavecurrency.network.AccessKeyInterceptor
 import com.wave.wavecurrency.repository.ExchangeRatesRepository
@@ -8,13 +7,11 @@ import com.wave.wavecurrency.repository.ExchangeRatesRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -67,7 +64,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository(apiService: APIService
+    fun provideRepository(
+        apiService: APIService
     ): ExchangeRatesRepository {
         return ExchangeRatesRepositoryImpl(apiService)
     }

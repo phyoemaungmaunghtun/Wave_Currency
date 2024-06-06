@@ -56,7 +56,7 @@ class ExchangeRatesRepositoryImpl @Inject constructor(
             403 -> "Oops! It seems you don't have the necessary permissions to access this feature. Please contact your system administrator for assistance."
             500 -> "Server Response: $responseCode  server broken"
             504 -> "Server Response: $responseCode  gateway time-out"
-            else -> "It is server error and you should try again!"
+            else -> "It is server problem and try again!"
         }
     }
 }

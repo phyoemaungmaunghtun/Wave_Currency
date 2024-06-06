@@ -6,11 +6,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.wave.wavecurrency.ui.MainViewModel
 import com.wave.wavecurrency.ui.theme.WaveCurrencyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,12 +26,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainNavigator(viewModel: MainViewModel = hiltViewModel()) {
+fun MainNavigator() {
     val navController = rememberNavController()
 
     NavHost(navController, startDestination = "main") {
         composable("main") {
-            MainScreen(viewModel = viewModel)
+            MainScreen()
         }
     }
 }

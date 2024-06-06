@@ -37,7 +37,7 @@ class SharedPrefsDataSource(private val sharedPreferences: SharedPreferences) {
     }
 
     fun getCurrencyRate(): Map<String, Double> {
-        val json = sharedPreferences.getString(CURRENCY_RATE, null)  // Get the JSON string
+        val json = sharedPreferences.getString(CURRENCY_RATE, null)
         return if (json != null) {
             val type = object :
                 TypeToken<Map<String, Double>>() {}.type  // Define the correct type for deserialization

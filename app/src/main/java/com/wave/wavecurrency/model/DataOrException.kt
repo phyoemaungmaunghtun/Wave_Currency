@@ -1,6 +1,6 @@
 package com.wave.wavecurrency.model
 
-data class DataOrException<T, Boolean, E: Exception>(
+data class DataOrException<T, Boolean, E : Exception>(
     var data: T? = null,
     var loading: Boolean? = null,
     var e: E? = null

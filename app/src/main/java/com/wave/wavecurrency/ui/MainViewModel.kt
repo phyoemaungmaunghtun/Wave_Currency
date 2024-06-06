@@ -117,16 +117,21 @@ class MainViewModel @Inject constructor(
                 for ((key, rate) in exchangeRates) {
                     val targetCurrency = key.removePrefix(baseCurrency)
                     val convertedAmount = amount * rate
-                    convertedRates[targetCurrency] = convertedAmount
+                    val formattedAmount = String.format("%.5f", convertedAmount).toDouble()
+                    convertedRates[targetCurrency] = formattedAmount
                 }
             } else {
                 val baseRate = exchangeRates[currencyType] ?: return@launch
                 for ((key, rate) in exchangeRates) {
-                    if (key == "$baseCurrency$currencyType") continue
+                    if (key == currencyType) continue
                     val targetCurrency = key.removePrefix(baseCurrency)
                     val convertedAmount = (amount / baseRate) * rate
-                    convertedRates[targetCurrency] = convertedAmount
+                    val formattedAmount = String.format("%.5f", convertedAmount).toDouble()
+                    convertedRates[targetCurrency] = formattedAmount
                 }
+                val usdAmount = amount / baseRate
+                convertedRates[baseCurrency] =
+                    String.format("%.5f", usdAmount).toDouble() // Add the base currency conversion
             }
 
             _exchangeRateData.value = DataOrException(
