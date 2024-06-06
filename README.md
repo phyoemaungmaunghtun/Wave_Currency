@@ -38,12 +38,12 @@ This app uses the [currencylayer.com](https://currencylayer.com/documentation) A
     ```
 
 2. Open the project in Android Studio.
+3. In order to test the app, I have already added api key. (Notice, its key has also limited api call)
 
-3. Add your currencylayer.com API key to the `gradle.properties` file:
+4. Add your currencylayer.com API key to the `gradle.properties` file:
     ```
     API_KEY=your_api_key_here
 ```
-4. In order to test the app, I have already added api key. (Notic its key has limit api call)
 
 ### Running the App
 
