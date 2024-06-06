@@ -1,5 +1,6 @@
 package com.wave.wavecurrency.di
 
+import com.wave.wavecurrency.BuildConfig
 import com.wave.wavecurrency.network.APIService
 import com.wave.wavecurrency.network.AccessKeyInterceptor
 import com.wave.wavecurrency.repository.ExchangeRatesRepository
@@ -21,7 +22,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAccessKeyInterceptor(): AccessKeyInterceptor {
-        val accessKey = "ffa85d5766ced52efd76f836a51e4511"
+        val accessKey = BuildConfig.API_KEY
         return AccessKeyInterceptor(accessKey)
     }
 
